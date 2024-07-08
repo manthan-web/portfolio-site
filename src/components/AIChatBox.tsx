@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useRef } from "react";
 import { Message, useChat } from "ai/react";
 import Link from "next/link";
@@ -47,7 +48,6 @@ const AIChatBox = ({ open, onClose }: AIChatBoxProps) => {
     }
 
   }, [open])
-
 
 
   return (
@@ -154,7 +154,7 @@ function ChatMessage({ message: { role, content } }: ChatMessageProps) {
         className={cn(
           "rounded-md border px-3 py-2",
           isAiMessage ? "bg-background" : "bg-foreground text-background"
-        )}
+        )}  
       >
         <ReactMarkdown
         components={{

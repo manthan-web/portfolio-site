@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { MessageContextProvider } from '@/context/index'
 import {ThemeProvider} from "@/components/ThemeProvider"
 
 const inter = Inter({ subsets: ["latin"] });
@@ -21,6 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <MessageContextProvider>
     <html lang="en">
       <body className={inter.className}>
         <ThemeProvider attribute="class">
@@ -30,5 +32,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
+    </MessageContextProvider>
   );
 }
