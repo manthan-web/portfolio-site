@@ -30,7 +30,7 @@ export default function Page() {
       </section>
       <hr className="border-muted" />
       <section className="space-y-3">
-    <h2>Side projects</h2>
+    <h2>Projects</h2>
     <p>
         In my free time, I like to work on side projects to keep my skills sharp and try out new tech. Here is a list of my current projects:
     </p>
@@ -40,6 +40,12 @@ export default function Page() {
                 AI Notes App for Class 12 Students
             </Link>
             - Building a notes app that provides the best notes with just a question from the best resources available, aiming to reduce students' struggle in finding notes and serve as an educational personal assistant for them.
+        </li>
+        <li>
+            <Link href="https://nostalgia-ecommerce.vercel.app/" className="text-primary hover:underline">
+                Nostalgia E-commerce Site
+            </Link>
+            - Built an e-commerce site themed around toys and things from the 2000s, aimed at evoking nostalgic memories and improving my skills.
         </li>
     </ul>
 </section>
