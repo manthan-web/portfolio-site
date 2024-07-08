@@ -1,11 +1,9 @@
 import { ChatOpenAI } from "@langchain/openai"
 import { ChatPromptTemplate, MessagesPlaceholder } from "@langchain/core/prompts"
-import { createStuffDocumentsChain } from "langchain/chains/combine_documents";
 import { StreamingTextResponse, Message as VercelChatMessage, LangChainAdapter } from 'ai';
 import { StringOutputParser } from "@langchain/core/output_parsers"
 import { formatDocumentsAsString } from "langchain/util/document";
 import { getVectorStore } from "@/lib/pinecone";
-import { AIMessage, HumanMessage } from "@langchain/core/messages"
 
 export async function POST (req: Request) {
 
@@ -14,14 +12,6 @@ export async function POST (req: Request) {
 
         const body = await req.json()
         const messages = body.messages
-
-        const chatHistory = messages
-        .slice(0, -1)
-        .map((m: VercelChatMessage) => 
-            m.role == "user" 
-          ? new HumanMessage(m.content)
-          : new AIMessage(m.content)
-        )
 
         const currrentMessage = messages[messages.length - 1].content
         const vectorStore = await getVectorStore()
@@ -47,7 +37,6 @@ export async function POST (req: Request) {
                 "Context:\n{context}`,
             ],
             ["user", "Question: {question}"],
-            new MessagesPlaceholder("chat_history")
         ])
 
     
@@ -56,7 +45,6 @@ export async function POST (req: Request) {
         const response = await chain.stream({
             question: currrentMessage,
             context: docAsString,
-            chat_history: chatHistory
         })
         
 
