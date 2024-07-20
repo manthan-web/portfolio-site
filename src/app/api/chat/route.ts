@@ -23,8 +23,9 @@ export async function POST (req: Request) {
 
         
         const model = new ChatOpenAI({
-            model: "gpt-3.5-turbo",
-            streaming: true
+            model: "gpt-4o-mini",
+            streaming: true,
+            temperature: 0.5
         })
 
         const prompt = ChatPromptTemplate.fromMessages([
